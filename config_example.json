@@ -1,0 +1,15 @@
+{
+    "api_url": "http://bit101.flwfdd.xyz",
+    "notices_url": "https://haobit.top/dev/site/notices.json",
+    "start_time": "2023-10-24T00:00:00+08",
+    "zhipuai_api_key": "",
+    "bots": [
+        {
+            "sid": "bot1",
+            "password": "BIT101",
+            "sources": [
+                "睿信"
+            ]
+        }
+    ]
+}
