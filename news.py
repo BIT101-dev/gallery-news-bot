@@ -109,7 +109,10 @@ class NewsSource:
         for news in self.notices_json:
             title = news["title"]
             url = news["link"]
-            time = datetime.fromisoformat(news["date"])
+            if news["date"].endswith("Z"):
+                time = datetime.fromisoformat(news["date"][:-1] + "+00:00")
+            else:
+                time = datetime.fromisoformat(news["date"])
             source = news["source"]
             if source in self.sources_map and "full_name" in self.sources_map[source]:
                 source_name = self.sources_map[source]["full_name"]
