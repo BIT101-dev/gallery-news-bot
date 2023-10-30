@@ -1,7 +1,7 @@
 """
 Author: flwfdd
 Date: 2023-10-27 20:31:26
-LastEditTime: 2023-10-27 20:31:42
+LastEditTime: 2023-10-31 02:53:11
 Description: _(:з」∠)_
 """
 import json
@@ -77,9 +77,9 @@ class NewsSource:
     def __init__(self, notices_path, sources_path):
         self.notices_path = notices_path
         self.sources_path = sources_path
-        self.news_list = []
 
     def get_data(self, start_time):
+        news_list = []
         # 从文件或者url获取数据
         if self.notices_path.startswith("http"):
             r = requests.get(self.notices_path)
@@ -119,7 +119,7 @@ class NewsSource:
             else:
                 source_name = source
             if time > start_time:
-                self.news_list.append(News(title, url, time, source, source_name))
+                news_list.append(News(title, url, time, source, source_name))
 
-        self.news_list.sort(key=lambda x: x.time)
-        return self.news_list
+        news_list.sort(key=lambda x: x.time)
+        return news_list
