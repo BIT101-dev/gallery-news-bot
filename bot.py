@@ -2,7 +2,7 @@
 Author: flwfdd
 Date: 2023-10-27 14:48:38
 LastEditTime: 2023-10-27 15:51:07
-Description: 完成BIT101登录
+Description: 与BIT101交互
 _(:з」∠)_
 """
 from hashlib import md5
@@ -11,6 +11,15 @@ import requests
 from config import Config
 
 config = Config()
+
+
+def generate_insert_sql():
+    bots = config.bots
+    sql = '''INSERT INTO "public"."users" ("created_at", "updated_at", "sid", "password", "nickname", "motto", "identity") VALUES '''
+    for bot in bots:
+        sql+=f'''(NOW(), NOW(), '{bot["sid"]}', '{md5(bot["password"].encode("utf-8")).hexdigest()}', '{bot["nickname"]}', '{bot["motto"]}', 6),'''
+    sql=sql[:-1]+';'
+    return sql
 
 
 class Bot:
@@ -35,6 +44,8 @@ class Bot:
 
     # 发布帖子
     def post(self, title: str, text: str, tags: list):
+        if len(title) > 42:
+            title = title[:41] + "…"
         data = {
             "title": title[:42],
             "text": text,

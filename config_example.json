@@ -1,14 +1,402 @@
 {
-    "api_url": "http://bit101.flwfdd.xyz",
+    "api_url": "http://e5.flwfdd.xyz:8080",
     "notices_url": "https://haobit.top/dev/site/notices.json",
-    "start_time": "2023-10-24T00:00:00+08",
+    "sources_url": "https://haobit.top/dev/site/sources.json",
+    "start_time": "2023-10-30T07:17:19.858000+00:00",
+    "sleep_minutes": 60,
     "zhipuai_api_key": "",
     "bots": [
         {
-            "sid": "bot1",
+            "sid": "bot_renshi",
             "password": "BIT101",
+            "nickname": "人事",
+            "motto": "党委教师工作部/人力资源部",
+            "sources": [
+                "人事"
+            ]
+        },
+        {
+            "sid": "bot_renwen",
+            "password": "BIT101",
+            "nickname": "人文",
+            "motto": "人文与社会科学学院、人文素质教研部",
+            "sources": [
+                "人文",
+                "人文素质"
+            ]
+        },
+        {
+            "sid": "bot_xindian",
+            "password": "BIT101",
+            "nickname": "信电",
+            "motto": "信息与电子学院",
+            "sources": [
+                "信电"
+            ]
+        },
+        {
+            "sid": "bot_guangdian",
+            "password": "BIT101",
+            "nickname": "光电",
+            "motto": "光电学院",
+            "sources": [
+                "光电"
+            ]
+        },
+        {
+            "sid": "bot_dangzhengbu",
+            "password": "BIT101",
+            "nickname": "党政部",
+            "motto": "党委或行政办公室",
+            "sources": [
+                "党政部"
+            ]
+        },
+        {
+            "sid": "bot_gongkai",
+            "password": "BIT101",
+            "nickname": "信息公开",
+            "motto": "信息公开网",
+            "sources": [
+                "公开数据",
+                "公开通知"
+            ]
+        },
+        {
+            "sid": "bot_chuangxinchuangye",
+            "password": "BIT101",
+            "nickname": "创新创业",
+            "motto": "学生创新创业实践中心、大学生创新创业训练计划管理系统",
+            "sources": [
+                "创新创业",
+                "大创"
+            ]
+        },
+        {
+            "sid": "bot_beiyuan",
+            "password": "BIT101",
+            "nickname": "北院",
+            "motto": "北京书院、北京学院",
+            "sources": [
+                "北京书院"
+            ]
+        },
+        {
+            "sid": "bot_yixue",
+            "password": "BIT101",
+            "nickname": "医学",
+            "motto": "医学技术学院",
+            "sources": [
+                "医学"
+            ]
+        },
+        {
+            "sid": "bot_guojijiaoliu",
+            "password": "BIT101",
+            "nickname": "国际交流",
+            "motto": "本科生国际交流",
+            "sources": [
+                "国际交流"
+            ]
+        },
+        {
+            "sid": "bot_tushuguan",
+            "password": "BIT101",
+            "nickname": "图书馆",
+            "motto": "图书馆、图书馆讲座",
+            "sources": [
+                "图书馆",
+                "图书馆讲座"
+            ]
+        },
+        {
+            "sid": "bot_xuegongwuzhuangxinli",
+            "password": "BIT101",
+            "nickname": "学工武装心理",
+            "motto": "学生工作部、武装部、心理健康教育与咨询中心",
+            "sources": [
+                "学工部等"
+            ]
+        },
+        {
+            "sid": "bot_xueshengshiwu",
+            "password": "BIT101",
+            "nickname": "学生事务",
+            "motto": "学生事务中心",
+            "sources": [
+                "学生事务"
+            ]
+        },
+        {
+            "sid": "bot_yuhang",
+            "password": "BIT101",
+            "nickname": "宇航",
+            "motto": "宇航学院",
+            "sources": [
+                "宇航"
+            ]
+        },
+        {
+            "sid": "bot_yanhe",
+            "password": "BIT101",
+            "nickname": "延河",
+            "motto": "延河课堂更新日志",
+            "sources": [
+                "延河"
+            ]
+        },
+        {
+            "sid": "bot_jiaowu",
+            "password": "BIT101",
+            "nickname": "教务",
+            "motto": "教务部、教务处",
+            "sources": [
+                "教务部",
+                "教务处"
+            ]
+        },
+        {
+            "sid": "bot_jiaoxue",
+            "password": "BIT101",
+            "nickname": "教学",
+            "motto": "教学运行与考务中心",
+            "sources": [
+                "教学中心",
+                "课程"
+            ]
+        },
+        {
+            "sid": "bot_shuxue",
+            "password": "BIT101",
+            "nickname": "数学",
+            "motto": "数学与统计学院",
+            "sources": [
+                "数学"
+            ]
+        },
+        {
+            "sid": "bot_shuxueshiyan",
+            "password": "BIT101",
+            "nickname": "数学实验",
+            "motto": "数学实验中心",
+            "sources": [
+                "数学实验"
+            ]
+        },
+        {
+            "sid": "bot_yingxin",
+            "password": "BIT101",
+            "nickname": "迎新",
+            "motto": "迎新动态",
+            "sources": [
+                "新生"
+            ]
+        },
+        {
+            "sid": "bot_mingde",
+            "password": "BIT101",
+            "nickname": "明德",
+            "motto": "明德书院",
+            "sources": [
+                "明德"
+            ]
+        },
+        {
+            "sid": "bot_jidian",
+            "password": "BIT101",
+            "nickname": "机电",
+            "motto": "机电学院",
+            "sources": [
+                "机电"
+            ]
+        },
+        {
+            "sid": "bot_jiche",
+            "password": "BIT101",
+            "nickname": "机车",
+            "motto": "机械与车辆学院",
+            "sources": [
+                "机车"
+            ]
+        },
+        {
+            "sid": "bot_xiaoyiyuan",
+            "password": "BIT101",
+            "nickname": "校医院",
+            "motto": "医院和社区卫生服务中心",
+            "sources": [
+                "校医院"
+            ]
+        },
+        {
+            "sid": "bot_qiushi",
+            "password": "BIT101",
+            "nickname": "求是",
+            "motto": "求是书院",
+            "sources": [
+                "求是"
+            ]
+        },
+        {
+            "sid": "bot_wuli",
+            "password": "BIT101",
+            "nickname": "物理",
+            "motto": "物理学院",
+            "sources": [
+                "物理"
+            ]
+        },
+        {
+            "sid": "bot_teli",
+            "password": "BIT101",
+            "nickname": "特立",
+            "motto": "特立书院",
+            "sources": [
+                "特立"
+            ]
+        },
+        {
+            "sid": "bot_shengming",
+            "password": "BIT101",
+            "nickname": "生命",
+            "motto": "生命学院",
+            "sources": [
+                "生命"
+            ]
+        },
+        {
+            "sid": "bot_liuxuesheng",
+            "password": "BIT101",
+            "nickname": "留学生",
+            "motto": "留学生中心",
+            "sources": [
+                "留学生"
+            ]
+        },
+        {
+            "sid": "bot_ruixin",
+            "password": "BIT101",
+            "nickname": "睿信",
+            "motto": "睿信书院",
             "sources": [
                 "睿信"
+            ]
+        },
+        {
+            "sid": "bot_zhiyi",
+            "password": "BIT101",
+            "nickname": "知艺",
+            "motto": "知艺书院",
+            "sources": [
+                "知艺"
+            ]
+        },
+        {
+            "sid": "bot_yanjiusheng",
+            "password": "BIT101",
+            "nickname": "研究生",
+            "motto": "研究生院",
+            "sources": [
+                "研究生"
+            ]
+        },
+        {
+            "sid": "bot_dierketang",
+            "password": "BIT101",
+            "nickname": "第二课堂",
+            "motto": "第二课堂",
+            "sources": [
+                "第二课堂"
+            ]
+        },
+        {
+            "sid": "bot_jinggong",
+            "password": "BIT101",
+            "nickname": "精工",
+            "motto": "精工书院",
+            "sources": [
+                "精工"
+            ]
+        },
+        {
+            "sid": "bot_jingguan",
+            "password": "BIT101",
+            "nickname": "经管",
+            "motto": "经管书院",
+            "sources": [
+                "经管"
+            ]
+        },
+        {
+            "sid": "bot_wangxin",
+            "password": "BIT101",
+            "nickname": "网信",
+            "motto": "网络信息技术中心",
+            "sources": [
+                "网信"
+            ]
+        },
+        {
+            "sid": "bot_wangan",
+            "password": "BIT101",
+            "nickname": "网安",
+            "motto": "网络空间安全学院",
+            "sources": [
+                "网安"
+            ]
+        },
+        {
+            "sid": "bot_zidonghua",
+            "password": "BIT101",
+            "nickname": "自动化",
+            "motto": "自动化学院",
+            "sources": [
+                "自动化"
+            ]
+        },
+        {
+            "sid": "bot_jisuanji",
+            "password": "BIT101",
+            "nickname": "计算机",
+            "motto": "计算机学院",
+            "sources": [
+                "计算机"
+            ]
+        },
+        {
+            "sid": "bot_zizhugongshi",
+            "password": "BIT101",
+            "nickname": "资助公示",
+            "motto": "学生事务中心校内公示",
+            "sources": [
+                "资助公示"
+            ]
+        },
+        {
+            "sid": "bot_tongyong",
+            "password": "BIT101",
+            "nickname": "通用",
+            "motto": "学校主站最新通知",
+            "sources": [
+                "通用"
+            ]
+        },
+        {
+            "sid": "bot_jidian2",
+            "password": "BIT101",
+            "nickname": "集电",
+            "motto": "集成电路与电子学院",
+            "sources": [
+                "集电"
+            ]
+        },
+        {
+            "sid": "bot_makesi",
+            "password": "BIT101",
+            "nickname": "马克思",
+            "motto": "马克思主义学院",
+            "sources": [
+                "马克思"
             ]
         }
     ]

@@ -18,13 +18,17 @@ config = Config()
 
 
 class News:
-    def __init__(self, title: str, url: str, time: datetime, source: str):
+    def __init__(
+        self, title: str, url: str, time: datetime, source: str, source_name: str
+    ):
         self.title = title
         self.url = url
         self.time = time
         self.source = source
-        self._text = ""
+        self.source_name = source_name
+        self._text = ""  # 真实的文本
 
+    # 第一次获取text时调用
     @property
     def text(self):
         if self._text == "":
@@ -39,12 +43,12 @@ class News:
         except:
             print("生成摘要失败：", self.title)
 
-        self._text += f"来源：{self.source}\n"
+        self._text += f"来源：{self.source_name}\n"
+        self._text += f"标题：{self.title}\n"
         tm = self.time.astimezone(pytz.timezone("Asia/Shanghai"))
-        print(self.time,tm,tm.strftime('%Y-%m-%d'))
-        self._text += f"日期：{tm.strftime('%Y-%m-%d')}\n"
+        self._text += f"发布日期：{tm.strftime('%Y-%m-%d')}\n"
         self._text += f"原文链接：{self.url}\n"
-        self._text += f"特别鸣谢 http://haobit.top 提供通知列表\n"
+        self._text += f"特别鸣谢 http://haobit.top 提供通知订阅服务\n"
 
     def generate_summary(self):
         article = Article(self.url, language="zh")
@@ -70,26 +74,49 @@ class News:
 
 
 class NewsSource:
-    def __init__(self, path):
-        self.path = path
+    def __init__(self, notices_path, sources_path):
+        self.notices_path = notices_path
+        self.sources_path = sources_path
         self.news_list = []
 
     def get_data(self, start_time):
-        if self.path.startswith("http"):
-            r = requests.get(self.path)
+        # 从文件或者url获取数据
+        if self.notices_path.startswith("http"):
+            r = requests.get(self.notices_path)
             if r.status_code != 200:
-                raise Exception("获取数据失败")
-            self.json = r.json()
+                raise Exception("获取Notices失败")
+            self.notices_json = r.json()
         else:
-            self.json = json.load(open(self.path, "r", encoding="utf-8"))
+            self.notices_json = json.load(
+                open(self.notices_path, "r", encoding="utf-8")
+            )
 
-        for news in self.json:
+        # 获取数据源描述
+        if self.sources_path.startswith("http"):
+            r = requests.get(self.sources_path)
+            if r.status_code != 200:
+                raise Exception("获取Sources失败")
+            self.sources_json = r.json()
+        else:
+            self.sources_json = json.load(
+                open(self.sources_path, "r", encoding="utf-8")
+            )
+        self.sources_map = {}
+        for source in self.sources_json:
+            self.sources_map[source["name"]] = source
+
+        # 生成新闻列表
+        for news in self.notices_json:
             title = news["title"]
             url = news["link"]
             time = datetime.fromisoformat(news["date"])
             source = news["source"]
+            if source in self.sources_map and "full_name" in self.sources_map[source]:
+                source_name = self.sources_map[source]["full_name"]
+            else:
+                source_name = source
             if time > start_time:
-                self.news_list.append(News(title, url, time, source))
+                self.news_list.append(News(title, url, time, source, source_name))
 
         self.news_list.sort(key=lambda x: x.time)
         return self.news_list
