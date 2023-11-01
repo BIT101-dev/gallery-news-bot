@@ -5,6 +5,7 @@ LastEditTime: 2023-10-31 02:53:11
 Description: _(:з」∠)_
 """
 import json
+import os
 from typing import Any
 import pytz
 import requests
@@ -27,6 +28,9 @@ class News:
         self.source = source
         self.source_name = source_name
         self._text = ""  # 真实的文本
+
+    def hash(self):
+        return hash(self.source + self.title + self.url)
 
     # 第一次获取text时调用
     @property
@@ -78,6 +82,25 @@ class NewsSource:
         self.notices_path = notices_path
         self.sources_path = sources_path
 
+    # 获取已经发送的新闻哈希列表
+    def get_sended_news_hash_list(self):
+        if os.path.exists("sended_news.json"):
+            return json.load(open("sended_news.json", "r", encoding="utf-8"))
+        else:
+            return []
+
+    # 设置已经发送的新闻
+    def set_sended_news(self, news: News):
+        sended_news = self.get_sended_news_hash_list()
+        if news.hash() not in sended_news:
+            sended_news.append(news.hash())
+            json.dump(sended_news, open("sended_news.json", "w", encoding="utf-8"))
+
+    # 筛选没有发送的新闻
+    def filter_unsended_news(self, news_list):
+        sended_news = self.get_sended_news_hash_list()
+        return [i for i in news_list if i.hash() not in sended_news]
+
     def get_data(self, start_time):
         news_list = []
         # 从文件或者url获取数据
@@ -121,5 +144,6 @@ class NewsSource:
             if time > start_time:
                 news_list.append(News(title, url, time, source, source_name))
 
+        news_list = self.filter_unsended_news(news_list)
         news_list.sort(key=lambda x: x.time)
         return news_list

@@ -33,12 +33,3 @@ class Config:
         self.zhipuai_api_key = self.json["zhipuai_api_key"]
         self.bots = self.json["bots"]
 
-    def set_start_timestamp(self, time: datetime):
-        self.json["start_time"] = datetime.isoformat(time)
-        self.start_time = time
-        json.dump(
-            self.json,
-            open("config.json", "w", encoding="utf-8"),
-            ensure_ascii=False,
-            indent=4,
-        )

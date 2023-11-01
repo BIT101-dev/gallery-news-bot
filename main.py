@@ -30,8 +30,7 @@ def update():
             if news.source in bot.sources:
                 try:
                     bot.post(news.title, news.text, [news.source, "通知", "新闻", "bot"])
-                    if news.time > config.start_time:
-                        config.set_start_timestamp(news.time)
+                    news_source.set_sended_news(news)
                     flag=True
                 except Exception as e:
                     print(e)
