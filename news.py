@@ -4,6 +4,7 @@ Date: 2023-10-27 20:31:26
 LastEditTime: 2023-10-31 02:53:11
 Description: _(:з」∠)_
 """
+from hashlib import md5
 import json
 import os
 from typing import Any
@@ -30,7 +31,7 @@ class News:
         self._text = ""  # 真实的文本
 
     def hash(self):
-        return hash(self.source + self.title + self.url)
+        return md5((self.title + self.url).encode("utf-8")).hexdigest()
 
     # 第一次获取text时调用
     @property
